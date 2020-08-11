@@ -5,12 +5,11 @@ import { initState } from './state'
 export function initMixin(Vue) {
   // 初始化流程
   Vue.prototype._init = function(options) {
-    console.log(options)
 
     // 数据劫持
     const vm = this // vue中使用 this.$options 指代用户传递的属性
     vm.$options = options
-    // 初始化状态
+    // 初始化状态（劫持状态 改变视图）
     initState(vm)
   }
 }

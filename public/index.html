@@ -10,10 +10,14 @@
   <script>
     let vm = new Vue({
       el: '#app',
-      data(){},
+      data(){
+        return {arr: [{a: 11}]}
+      },
       computed(){},
       watch(){}
     })
+    vm._data.arr[0].a = 100
+    // console.log('vm', vm._data.arr[0].a = 100)
   </script>
 </body>
 </html>
