@@ -16,8 +16,10 @@
       computed(){},
       watch(){}
     })
-    vm._data.arr[0].a = 100
-    // console.log('vm', vm._data.arr[0].a = 100)
+    // vm._data.arr[0].a = 100
+    vm._data.arr.push({b: 2})
+    vm._data.arr[1].b = 100
+    console.log('vm', vm._data.arr)
   </script>
 </body>
 </html>

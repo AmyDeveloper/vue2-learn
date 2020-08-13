@@ -2,9 +2,18 @@ import { arrayMethods } from './array.js'
 
 class Observer {
   constructor(value) {
+
+    // value.__ob__ = this
+    // 对象是否被观测过 是否有'__ob__'属性
+    Object.defineProperty(value, '__ob__', {
+      enumerable: false, // 不可枚举
+      configurable: false, // 不可被删除
+      value: this,
+    })
+
     if (Array.isArray(value)){
       // push pop shift unshift splice reverse sort  改变数组
-      // 函数劫持 切片编程
+      // 函数劫持
       value.__proto__ = arrayMethods
       // 数组中的对象类型
       this.observeArray(value)
@@ -15,7 +24,9 @@ class Observer {
     }
   }
   observeArray(value) {
-
+    value.forEach(item => {
+      observe(item)
+    })
   }
   walk(data) {
     const keys = Object.keys(data)
@@ -40,8 +51,9 @@ function defineReactive(data, key, value) {
 }
 
 export function observe(data) {
-  if(typeof data !== 'object' || data == null) {
-    return
+  if(typeof data !== 'object' || data === null) {
+    return data
   }
+  if(data.__ob__) return data
   return new Observer(data)
 }
