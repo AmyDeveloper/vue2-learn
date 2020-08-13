@@ -2,7 +2,6 @@ import { arrayMethods } from './array.js'
 
 class Observer {
   constructor(value) {
-
     // value.__ob__ = this
     // 对象是否被观测过 是否有'__ob__'属性
     Object.defineProperty(value, '__ob__', {
@@ -20,7 +19,6 @@ class Observer {
     } else {
       // defineProperty 重新定义属性
       this.walk(value)
-
     }
   }
   observeArray(value) {

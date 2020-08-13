@@ -25,7 +25,7 @@ function initData(vm) { // 数据的初始化操作
   let data = vm.$options.data
   vm._data = data = typeof data === 'function' ? data.call(vm) : data
 
-  //数据的劫持 对象Object.defineProperty 数组单独处理
+  //数据的劫持 对象Object.defineProperty, 数组单独处理
   observe(data)
 }
 function initComputed() {}

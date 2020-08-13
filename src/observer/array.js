@@ -16,7 +16,6 @@ let methods = [
 
 methods.forEach(method => {
   arrayMethods[method] = function(...args) {
-    console.log('[[[[[[[')
     const result = oldArrayProtoMetthods[method].apply(this, args)
     let interted
     let ob = this.__ob__
