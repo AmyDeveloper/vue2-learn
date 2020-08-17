@@ -1,14 +1,12 @@
 import { arrayMethods } from './array.js'
+import { defineProperty } from '../utils.js'
 
 class Observer {
   constructor(value) {
     // value.__ob__ = this
     // 对象是否被观测过 是否有'__ob__'属性
-    Object.defineProperty(value, '__ob__', {
-      enumerable: false, // 不可枚举
-      configurable: false, // 不可被删除
-      value: this,
-    })
+
+    defineProperty(value, '__ob__', this)
 
     if (Array.isArray(value)){
       // push pop shift unshift splice reverse sort  改变数组
@@ -36,11 +34,9 @@ function defineReactive(data, key, value) {
   observe(value) // 如果值是对象 递归 进行观测
   Object.defineProperty(data, key, {
     get() {
-      console.log('-----get')
       return value
     },
     set(newValue) {
-      console.log('+++++set')
       if (newValue == value) return
       observe(newValue) // 如果将值改为对象 继续观测
       value = newValue

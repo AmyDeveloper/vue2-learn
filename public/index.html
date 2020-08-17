@@ -6,20 +6,36 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="app">
+    <div id="test">hello {{name}} <span>word</span></div>
+  </div>
   <script src="/dist/umd/vue.js"></script>
   <script>
     let vm = new Vue({
       el: '#app',
       data(){
-        return {arr: [{a: 1}]}
+        return {
+          arr: [1,2,3],
+          object: {
+            name: 'name',
+            age: 19,
+          }
+        }
       },
-      computed(){},
-      watch(){}
+      // render(h) { // createElement
+      //   return h('div', {id: 'app'}, 'hello')
+      // }
+      // template: `<div id="app">hello</div>`
     })
     // vm._data.arr[0].a = 100
     // vm._data.arr.push({b: 2})
     // vm._data.arr[1].b = 100
-    console.log('vm', vm._data.arr)
+    // vm.arr = 900
+    // console.log('vm', vm)
+
+    // 渲染 1）默认找render方法 2)找template 3）找el属性
+    // ast解析
+    // vm.$mount('#app')
   </script>
 </body>
 </html>
